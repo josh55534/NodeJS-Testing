@@ -10,8 +10,11 @@ import React, { useState } from 'react';
 function BooButton(props) {
     let button;
     
-    if (!props.isBooPrimed) button = <button onClick={props.handleSubmit}>GAHHHH</button>;
-    else button = <button onClick={props.handleSubmit}>Sure, whatever</button>
+    /* these next two lines of code are interesting. in between <button></button> there is variable props.children. this means
+     * that when we call <BooButton></BooButton> all items within the opening and closing tags called with props.children. can
+     * change what the name of children inside with <button name={what_to_put_inside}/> */
+    if (!props.isBooPrimed) button = <button onClick={props.handleSubmit}>{ props.children }</button>;
+    else button = <button onClick={props.handleSubmit}>{ props.children }</button>
 
     return button;
 }
@@ -59,8 +62,12 @@ function App(props) {
          * been sprung once, and boo is primed for another BOO!. if all of the above are false, then it goes to "Psst. Hey _name_..." message.
          * that means the boo is primed, and has never been sprung.*/
         let boo
+        let buttonText = "Sure, whatever"
 
-        if (!isBooPrimed) boo = "BOO!"
+        if (!isBooPrimed) {
+            boo = "BOO!"
+            buttonText = "GAHHHH!"
+        }
         else if (hasBooHappened) boo = "Sorry... do you forgive me?";
         else boo = `Psst. Hey ${name}.... click this button`;
 
@@ -71,7 +78,7 @@ function App(props) {
                     <p>
                         {boo}
                     </p>
-                    <BooButton isBooPrimed={isBooPrimed} handleSubmit={handleSubmit} /> {/*EX:1 inline use of custom component*/}
+                    <BooButton isBooPrimed={isBooPrimed} handleSubmit={handleSubmit}>{buttonText}</BooButton> {/*EX:1 inline use of custom component*/}
                     {/* right here is an example of an inline if with logical &&. this allows you to add additional html elements based
                     * on an if(condition) statement is true, but inline. this can be handy for some stuff later down the line. like
                     * displaying text if certain conditions have been met*/}
