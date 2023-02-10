@@ -37,6 +37,11 @@ button {
   font-size: calc(5px + 1vmin);
 }
 
+.No-Name-Error {
+  font-size: calc(5px + 1vmin);
+  color: red;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
