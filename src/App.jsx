@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
